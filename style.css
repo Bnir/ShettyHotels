@@ -143,6 +143,8 @@ table {
 body {
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
+    /* height: 100vh;
+    overflow:hidden; */
 }
 
 .nav-whole {
@@ -206,7 +208,7 @@ input {
 }
 
 .categories {
-    height: 100vh;
+    height: 100;
     border-right: 1px solid grey;
     flex-grow: 0.8;
 }
@@ -226,8 +228,7 @@ input {
 
 .cart,
 .food {
-    padding: 20px;
-    padding-left: 40px;
+    padding: 0 20px;
 }
 
 .active {
@@ -336,4 +337,66 @@ a {
         font-size: 1.8rem;
     }
 
+}
+
+
+
+.food-head{
+    margin-top: 20px;
+}
+
+.food-item{
+    margin-top: 10px;
+    display: flex;
+    padding: 10px;
+    gap: 30px;
+    /* border-top: 1px solid grey;
+    border-bottom: 1px solid grey; */
+}
+
+.image-wrap{
+    display: flex;
+    align-items: center;
+}
+
+.image-wrap .wrapper img{
+    width: 160px;
+    aspect-ratio: 1/1;
+}
+
+.detailscont{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.detailing{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailing button{
+    background-color: transparent;
+    border: 1px solid #146eb4;
+    color: #146eb4;
+    font-weight: 600;
+    padding: 6px 20px;
+}
+
+.food-item:hover{
+    background-color: rgba(224, 228, 232, 0.286);
+}
+
+/* .food{
+    max-height: 90vh;
+    overflow-y: auto;
+} */
+
+.food{
+    z-index: -100;
+}
+
+.categories , .cart{
+    z-index: 100;
 }
