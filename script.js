@@ -52,18 +52,6 @@ let foodCatelog = {
             'img': "https://dukaan.b-cdn.net/200x200/webp/2179916/541a1ca8-cd5f-450b-a3e2-0e3e29ca0828/1607337983547.png",
             'price': "60"
         }
-    ],
-    'Veg': [
-        {
-            'name': "Jeera Chawal",
-            'img': "https://dukaan.b-cdn.net/200x200/webp/2179916/541a1ca8-cd5f-450b-a3e2-0e3e29ca0828/1607338038273.png",
-            'price': "60"
-        },
-        {
-            'name': "Kadhi Chawal",
-            'img': "https://dukaan.b-cdn.net/200x200/webp/2179916/541a1ca8-cd5f-450b-a3e2-0e3e29ca0828/1607337983547.png",
-            'price': "60"
-        }
     ]
 
 };
