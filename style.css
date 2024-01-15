@@ -259,6 +259,10 @@ a {
 .cart .cart-container {
     display: flex;
 }
+.cart-container{
+    margin-bottom: 20px;
+}
+
 
 .food-head h1 {
     margin-right: 6px;
@@ -411,3 +415,25 @@ a {
 .categories , .cart{
     z-index: 100;
 } */
+
+#food-cart-cont{
+    display: flex;
+    height: 5ch;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price-details{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-details .cart-buttons button{
+    border: 1px solid #146eb4;
+    color: #146eb4;
+    font-weight: bold;
+}
+
+.price-details .cart-buttons #add{
+    background-color: white;
+}

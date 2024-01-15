@@ -53,7 +53,7 @@ let foodCatelog = {
             'price': "60"
         }
     ],
-    'Veg': [ 
+    'Veg': [
         {
             'name': "Jeera Chawal",
             'img': "https://dukaan.b-cdn.net/200x200/webp/2179916/541a1ca8-cd5f-450b-a3e2-0e3e29ca0828/1607338038273.png",
@@ -65,17 +65,19 @@ let foodCatelog = {
             'price': "60"
         }
     ]
-   
+
 };
+
+cartItems = {};
 
 let sums = 0;
 for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
     let cat = Object.keys(foodCatelog)[i];
 
     for (let j = 0; j < foodCatelog[cat].length; j++) {
-        sums = sums+1;
-        };
+        sums = sums + 1;
     };
+};
 // let foodItems = {
 //     'Non-veg': 4,
 //     'Rice': 6,
@@ -90,6 +92,17 @@ const itemarray = Object.entries(foodCatelog).map(function (ele) {
     let [key, value] = ele;
     return (`${key} (${value.length})`);
 });
+
+// let updater = document.getElementById('cart-buttons2');
+function update_buttons(item) {
+    let updater1 = document.getElementById(item);
+    updater1.textContent = cartItems[item];
+    // updater.querySelectorAll('.add').forEach(ele => {
+    //     if (ele.name === item) {
+    //         ele.innerText("1")
+    //     };
+    // });
+};
 
 let foodlist = document.getElementById("category");
 
@@ -158,21 +171,65 @@ for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
 
         let childDiv5 = document.createElement('div');
         childDiv5.classList.add("cart-buttons");
+        childDiv5.dataset.myAttribute = details[0];
 
         let myButton = document.createElement('button');
         myButton.textContent = "-";
-        myButton.onclick = "decreaseItem()";
+        myButton.onclick =  (ele) => {
+            let newItem = ele.target.closest('.cart-buttons');
+            let itemId = newItem.dataset.myAttribute;
+            if (cartItems[itemId] === 1){
+                myButton.style.cursor = "not-allowed";
+                myButton.style.backgroundColor = "rgba(128, 128, 128, 0.18)";
+                myButton.style.color = "#146eb4";
+                cartItems[itemId]--
+            }
+            else if (cartItems[itemId] === 0){
+                return;
+            }
+            else if (cartItems[itemId] === undefined){
+                return;
+            }
+            else{
+                cartItems[itemId]--
+            }
+
+            update_buttons(itemId);
+        };
         myButton.id = "minus"
 
         let myButton1 = document.createElement('button');
         myButton1.textContent = "0";
-        // myButton1.onclick(decreaseItem());
-        myButton1.id = "add"
+        myButton1.id = details[0];
+
+        // myButton1.onclick = function (ele1) {
+        //     console.log(ele1);
+        // };
 
         let myButton2 = document.createElement('button');
         myButton2.textContent = "+";
-        myButton2.onclick = "increaseItem()";
-        myButton2.id = "plus"
+        myButton2.classList.add("add");
+
+        myButton2.onclick = (ele) => {
+            let newItem = ele.target.closest('.cart-buttons');
+            let itemId = newItem.dataset.myAttribute;
+            myButton.style.cursor = "pointer";
+            myButton.style.backgroundColor = "#146eb4";
+            myButton.style.color = "aliceblue";
+            if (cartItems[itemId] === undefined) {
+                cartItems[itemId] = 1;
+            }
+            else {
+                cartItems[itemId]++
+            };
+            update_buttons(itemId);
+            // console.log(cartItems);
+            // newItem.querySelectorAll('.add').textContent = cartItems[itemId];
+        };
+
+        myButton2.name = details[0];
+        // myButton2.classList.add(details[0].replace(/\s/g, ''));
+        myButton2.id = "plus";
 
         childDiv5.appendChild(myButton);
         childDiv5.appendChild(myButton1);
@@ -186,7 +243,7 @@ for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
 
         mainDiv2.appendChild(mainDiv3);
 
-        newCat.appendChild(mainDiv2)
+        newCat.appendChild(mainDiv2);
 
         menuContainer.appendChild(newCat);
     };
@@ -249,3 +306,5 @@ itemarray.forEach((item, index) => {
         foodlist.appendChild(document.createElement('br'));
     }
 });
+
+

@@ -56,9 +56,9 @@
                     </div>
                     <div class="detailing">
                         <p>70rs</p>
-                        <div class="cart-buttons"> <button onclick="decreaseItem()" id="minus">-</button>
-                            <button id="add">0</button>
-                            <button onclick="increaseItem()" id="plus">+</button>
+                        <div id="cart-buttons2" class="cart-buttons"> <button onclick="decreaseItem()" id="minus">-</button>
+                            <button class="add" id="add">0</button>
+                            <button onclick="increaseItem(this)" id="plus">+</button>
                         </div>
                     </div>
                 </div>
@@ -70,8 +70,19 @@
                 <h1>Cart</h1>
                 <button class="blue-button">1</button>
             </div>
+            <div id="food-cart-cont">
+                <h2>Keema</h2>
+                <div class="price-details">
+                    <p>70rs</p>
+                    <div class="cart-buttons"> <button onclick="decreaseItem()" id="minus">-</button>
+                        <button id="add">0</button>
+                        <button onclick="increaseItem(this)" id="plus">+</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- <script src="functions.js"></script> -->
     <script src="script.js"></script>
 </body>
 
