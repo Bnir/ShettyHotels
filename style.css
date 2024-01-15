@@ -384,6 +384,17 @@ a {
     padding: 6px 20px;
 }
 
+#plus{
+    cursor: pointer;
+    color: aliceblue;
+    background-color: #146eb4;
+}
+
+#minus{
+    cursor:not-allowed;
+    background-color: rgba(128, 128, 128, 0.18);
+}
+
 .food-item:hover{
     background-color: rgba(224, 228, 232, 0.286);
 }
@@ -393,10 +404,10 @@ a {
     overflow-y: auto;
 } */
 
-.food{
+/* .food{
     z-index: -100;
 }
 
 .categories , .cart{
     z-index: 100;
-}
+} */
