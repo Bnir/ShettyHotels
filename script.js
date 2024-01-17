@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const curtainContainer = document.getElementById("curtain-container");
+
+    curtainContainer.addEventListener("click", function() {
+        curtainContainer.style.animation = "revealAnimation 0.8s ease forwards"
+        curtainContainer.style.transform = "translateY(-100%)";
+    });
+});
+
+
+
 let foodCatelog = {
     'Non-veg': [
         {
@@ -262,7 +273,6 @@ foodlist.appendChild(li);
 
 
 
-// Use a forEach loop to iterate over itemarray
 itemarray.forEach((item, index) => {
     const li = document.createElement('li');
     li.textContent = item;
@@ -289,7 +299,6 @@ itemarray.forEach((item, index) => {
     })
     foodlist.appendChild(li);
 
-    // Add a line break after each list item, except for the last one
     if (index < itemarray.length - 1) {
         foodlist.appendChild(document.createElement('br'));
     }

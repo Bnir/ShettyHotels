@@ -1,3 +1,37 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+#curtain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 9999;
+    /* animation: revealAnimation 0.5s ease forwards; */
+}
+
+@keyframes revealAnimation {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+#poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -259,7 +293,8 @@ a {
 .cart .cart-container {
     display: flex;
 }
-.cart-container{
+
+.cart-container {
     margin-bottom: 20px;
 }
 
@@ -303,6 +338,10 @@ a {
     overflow: hidden;
 }
 
+.image-wrap .wrapper img {
+    width: 160px;
+    aspect-ratio: 1/1;
+}
 
 
 #category li::before {
@@ -319,37 +358,12 @@ a {
 }
 
 
-@media (width>2000px) {
-    .former {
-        max-width: 700px;
-    }
 
-    .brand-img {
-        width: 300px;
-    }
-
-    .menu-sections a {
-        font-size: 1.4rem;
-    }
-
-    .categories li {
-        font-size: 1.6rem;
-    }
-
-    .cart h1,
-    .food h1 {
-        font-size: 1.8rem;
-    }
-
-}
-
-
-
-.food-head{
+.food-head {
     margin-top: 20px;
 }
 
-.food-item{
+.food-item {
     margin-top: 10px;
     display: flex;
     padding: 10px;
@@ -358,29 +372,25 @@ a {
     border-bottom: 1px solid grey; */
 }
 
-.image-wrap{
+.image-wrap {
     display: flex;
     align-items: center;
 }
 
-.image-wrap .wrapper img{
-    width: 160px;
-    aspect-ratio: 1/1;
-}
 
-.detailscont{
+.detailscont {
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.detailing{
+.detailing {
     display: flex;
     justify-content: space-between;
 }
 
-.detailing button{
+.detailing button {
     background-color: transparent;
     border: 1px solid #146eb4;
     color: #146eb4;
@@ -388,18 +398,18 @@ a {
     padding: 6px 20px;
 }
 
-#plus{
+#plus {
     cursor: pointer;
     color: aliceblue;
     background-color: #146eb4;
 }
 
-#minus{
-    cursor:not-allowed;
+#minus {
+    cursor: not-allowed;
     background-color: rgba(128, 128, 128, 0.18);
 }
 
-.food-item:hover{
+.food-item:hover {
     background-color: rgba(224, 228, 232, 0.286);
 }
 
@@ -416,24 +426,108 @@ a {
     z-index: 100;
 } */
 
-#food-cart-cont{
+#food-cart-cont {
     display: flex;
     height: 5ch;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.price-details{
+.price-details {
     display: flex;
     justify-content: space-between;
 }
 
-.price-details .cart-buttons button{
+.price-details .cart-buttons button {
     border: 1px solid #146eb4;
     color: #146eb4;
     font-weight: bold;
 }
 
-.price-details .cart-buttons #add{
+.price-details .cart-buttons #add {
     background-color: white;
+}
+
+
+/* Media queries for Mobile */
+
+/* @media (width < 500px) {
+    .hero-sections {
+        flex-direction: column;
+    }
+
+    .categories {
+        display: none;
+    }
+
+    .detailing {
+        flex-direction: column;
+    }
+
+    .detailing button {
+        margin-top: 8px;
+        padding: 2px 6px;
+    }
+
+    .food {
+        border-right: none;
+    }
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+} */
+
+@media (width>1600px) {
+    .former {
+        max-width: 700px;
+    }
+
+
+    .brand-img {
+        width: 300px;
+    }
+
+    .menu-sections a {
+        font-size: 1.6rem;
+    }
+
+    .categories li {
+        font-size: 1.7rem;
+    }
+
+    .cart h1,
+    .food h1 {
+        font-size: 2rem;
+    }
+
+    .food-item {
+        height: 23vh;
+    }
+
+    .image-wrap .wrapper img {
+        width: 240px;
+        border-radius: 20px;
+    }
+
+    .detailing button {
+        border-radius: 10px;
+        padding: 12px 30px;
+
+    }
+
+    .detailing p {
+        font-size: 30px;
+    }
+
+    .blue-button {
+        padding: 10px 20px;
+        font-size: 20px;
+    }
+
+    #food-cart-cont h2 {
+        font-size: 1.3rem;
+    }
+
 }
