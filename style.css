@@ -451,7 +451,7 @@ a {
 
 /* Media queries for Mobile */
 
-/* @media (width < 500px) {
+@media (width < 500px) {
     .hero-sections {
         flex-direction: column;
     }
@@ -477,7 +477,7 @@ a {
         width: 100%;
         overflow-x: hidden;
     }
-} */
+}
 
 @media (width>1600px) {
     .former {
