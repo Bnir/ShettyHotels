@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const curtainContainer = document.getElementById("curtain-container");
 
-    curtainContainer.addEventListener("click", function() {
+    curtainContainer.addEventListener("click", function () {
         curtainContainer.style.animation = "revealAnimation 0.8s ease forwards"
         curtainContainer.style.transform = "translateY(-100%)";
     });
@@ -68,6 +68,7 @@ let foodCatelog = {
 };
 
 cartItems = {};
+let cartItems1 = {}; // Object to store cart items and their quantities
 
 let sums = 0;
 for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
@@ -101,6 +102,7 @@ function update_buttons(item) {
     //         ele.innerText("1")
     //     };
     // });
+    let carter = document.getElementById('food-cart-cont');
 };
 
 let foodlist = document.getElementById("category");
@@ -174,27 +176,52 @@ for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
 
         let myButton = document.createElement('button');
         myButton.textContent = "-";
-        myButton.onclick =  (ele) => {
+        // myButton.onclick = (ele) => {
+        //     let newItem = ele.target.closest('.cart-buttons');
+        //     let itemId = newItem.dataset.myAttribute;
+        //     if (cartItems[itemId] === 1) {
+        //         myButton.style.cursor = "not-allowed";
+        //         myButton.style.backgroundColor = "rgba(128, 128, 128, 0.18)";
+        //         myButton.style.color = "#146eb4";
+        //         cartItems[itemId]--
+        //     }
+        //     else if (cartItems[itemId] === 0) {
+        //         return;
+        //     }
+        //     else if (cartItems[itemId] === undefined) {
+        //         return;
+        //     }
+        //     else {
+        //         cartItems[itemId]--
+        //     }
+
+        //     update_buttons(itemId);
+        // };
+
+        myButton.onclick = (ele) => {
             let newItem = ele.target.closest('.cart-buttons');
             let itemId = newItem.dataset.myAttribute;
-            if (cartItems[itemId] === 1){
+            if (cartItems[itemId] === 1) {
                 myButton.style.cursor = "not-allowed";
                 myButton.style.backgroundColor = "rgba(128, 128, 128, 0.18)";
                 myButton.style.color = "#146eb4";
-                cartItems[itemId]--
+                cartItems[itemId]--;
+                // Remove the item from cartItems if quantity becomes 0
             }
-            else if (cartItems[itemId] === 0){
+            else if (cartItems[itemId] === 0) {
                 return;
-            }
-            else if (cartItems[itemId] === undefined){
-                return;
-            }
-            else{
-                cartItems[itemId]--
-            }
 
-            update_buttons(itemId);
+            }
+            else if (cartItems[itemId] === undefined) {
+                return;
+            }
+            else {
+                cartItems[itemId]--;
+            }
+            update_buttons(itemId); // Update the buttons in the food item
+            updateCart(); // Update the cart section
         };
+
         myButton.id = "minus"
 
         let myButton1 = document.createElement('button');
@@ -209,6 +236,22 @@ for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
         myButton2.textContent = "+";
         myButton2.classList.add("add");
 
+        // myButton2.onclick = (ele) => {
+        //     let newItem = ele.target.closest('.cart-buttons');
+        //     let itemId = newItem.dataset.myAttribute;
+        //     myButton.style.cursor = "pointer";
+        //     myButton.style.backgroundColor = "#146eb4";
+        //     myButton.style.color = "aliceblue";
+        //     if (cartItems[itemId] === undefined) {
+        //         cartItems[itemId] = 1;
+        //     }
+        //     else {
+        //         cartItems[itemId]++
+        //     };
+        //     update_buttons(itemId);
+        //     // console.log(cartItems);
+        //     // newItem.querySelectorAll('.add').textContent = cartItems[itemId];
+        // };
         myButton2.onclick = (ele) => {
             let newItem = ele.target.closest('.cart-buttons');
             let itemId = newItem.dataset.myAttribute;
@@ -217,13 +260,11 @@ for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
             myButton.style.color = "aliceblue";
             if (cartItems[itemId] === undefined) {
                 cartItems[itemId] = 1;
+            } else {
+                cartItems[itemId]++;
             }
-            else {
-                cartItems[itemId]++
-            };
-            update_buttons(itemId);
-            // console.log(cartItems);
-            // newItem.querySelectorAll('.add').textContent = cartItems[itemId];
+            update_buttons(itemId); // Update the buttons in the food item
+            updateCart(); // Update the cart section
         };
 
         myButton2.name = details[0];
@@ -303,4 +344,141 @@ itemarray.forEach((item, index) => {
         foodlist.appendChild(document.createElement('br'));
     }
 });
+
+// function updateCart(itemName, quantity) {
+//     let cartContainer = document.getElementById('food-cart-cont');
+//     let cartItem = document.createElement('div');
+//     cartItem.classList.add('cart-fooditem');
+//     cartItem.innerHTML = `<div class="cart-food"><p>${itemName} (${quantity})</p></div>`;
+//     cartContainer.appendChild(cartItem);
+// }
+
+function updateCart() {
+    let cartContainer = document.getElementById('food-cart-cont');
+    cartContainer.innerHTML = ''; // Clear the cart container before updating
+    let totalPrice = 0; // Variable to store the total price of all items
+
+    for (let item in cartItems) {
+        if (cartItems[item] > 0) {
+            let itemPrice = getItemPrice(item); // Get the price of the item
+            let itemTotalPrice = calculateItemTotalPrice(item, cartItems[item]); // Calculate total price
+            totalPrice += itemTotalPrice; // Add item's total price to the overall total
+            let cartItem = document.createElement('div');
+            cartItem.classList.add('cart-fooditem');
+            cartItem.innerHTML = `<div class="cart-food">
+                                    <p>${item} (${cartItems[item]})</p>
+                                    <p>Item Price: ${itemTotalPrice}rs<br><br></p>
+                                  </div>`;
+            cartContainer.appendChild(cartItem);
+        } else {
+            delete cartItems[item]; // Remove the item from cartItems if quantity is 0
+        }
+    }
+    // Display the total price of all items in the cart
+    let totalContainer = document.createElement('div');
+    totalContainer.classList.add('total-price');
+    totalContainer.innerHTML = `<p>Total Price: ${totalPrice}rs</p>`;
+    cartContainer.appendChild(totalContainer);
+    let proceed = document.createElement('div');
+    proceed.innerHTML = '<button>Generate QR</button>';
+    proceed.id = "generate-qr";
+    cartContainer.appendChild(proceed);
+}
+
+function pricer(item1) {
+    for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
+        let cat = Object.keys(foodCatelog)[i];
+
+        for (let j = 0; j < foodCatelog[cat].length; j++) {
+            let item = foodCatelog[cat][j];
+            let details = Object.values(item).map(function (ele) {
+                return ele;
+            });
+            if (details[0] == item1) {
+                return details[2];
+            }
+        }
+    }
+}
+
+// Function to get the price of an item from the foodCatelog
+function getItemPrice(itemName) {
+    for (let category in foodCatelog) {
+        for (let item of foodCatelog[category]) {
+            if (item.name === itemName) {
+                return item.price;
+            }
+        }
+    }
+    return 0; // Return 0 if item not found (this shouldn't happen)
+}
+
+// Function to calculate the total price for an item
+function calculateItemTotalPrice(itemName, quantity) {
+    let itemPrice = getItemPrice(itemName);
+    return itemPrice * quantity;
+}
+function generateQR() {
+    let qrText = ''; // Initialize an empty string to store the QR text
+
+    let count2 = 0;
+
+    // Iterate through all items in the cartItems object
+    for (let item in cartItems) {
+        if (cartItems[item] > 0) {
+            count2++;
+            let itemPrice = getItemPrice(item); // Get the price of the item
+            let itemTotalPrice = calculateItemTotalPrice(item, cartItems[item]); // Calculate total price
+            qrText += `${item} (${cartItems[item]}) - ${itemTotalPrice}rs\n`; // Append item info to the QR text
+        }
+    }
+
+    qrText += `Total Price: ${calculateTotalPrice()}rs`; // Add total price to the QR text
+    document.getElementById("qrcode").innerHTML = "";
+    if (count2 == 0) {
+        qrText = "No Items were in cart";
+    }
+    // Create a QR code instance
+    let qrCode = new QRCode(document.getElementById("qrcode"), {
+        text: qrText, // Set the QR text
+        width: 256, // Set the width of the QR code
+        height: 256, // Set the height of the QR code
+        colorDark: "#000000", // Set the dark color of the QR code
+        colorLight: "#ffffff", // Set the light color of the QR code
+        correctLevel: QRCode.CorrectLevel.H // Set the error correction level of the QR code
+    });
+
+    // Optionally, you can add styling to the QR code container
+    let qrcodeContainer = document.getElementById("qrcode");
+    qrcodeContainer.style.margin = "auto"; // Center the QR code
+    qrcodeContainer.style.display = "block"; // Display as a block element
+    openPopup();
+}
+
+// Event listener for the Generate QR button
+document.getElementById('generate-qr').addEventListener('click', generateQR);
+
+function calculateTotalPrice() {
+    let totalPrice = 0;
+
+    for (let item in cartItems) {
+        if (cartItems[item] > 0) {
+            let itemPrice = getItemPrice(item);
+            totalPrice += itemPrice * cartItems[item]; // Add the total price of each item to the totalPrice
+        }
+    }
+
+    return totalPrice;
+}
+
+
+// Function to open the popup
+function openPopup() {
+    document.getElementById("qr-popup").style.display = "block";
+}
+
+// Function to close the popup
+function closePopup() {
+    document.getElementById("qr-popup").style.display = "none";
+}
 
