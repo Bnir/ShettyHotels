@@ -379,10 +379,19 @@ function updateCart() {
     totalContainer.classList.add('total-price');
     totalContainer.innerHTML = `<p>Total Price: ${totalPrice}rs</p>`;
     cartContainer.appendChild(totalContainer);
-    let proceed = document.createElement('div');
-    proceed.innerHTML = '<button>Generate QR</button>';
-    proceed.id = "generate-qr";
-    cartContainer.appendChild(proceed);
+
+    let cont3 = document.createElement('div');
+    cont3.classList.add('pro-button');
+    var proceed = document.createElement('button');
+    proceed.innerHTML = 'Generate QR';
+    proceed.id = 'generate-qr';
+    proceed.style.cursor = 'pointer';
+
+    proceed.addEventListener('click', generateQR);
+
+
+    cont3.appendChild(proceed);
+    cartContainer.appendChild(cont3);
 }
 
 function pricer(item1) {
