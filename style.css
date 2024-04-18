@@ -190,7 +190,7 @@ body {
 .nav-cont {
     width: 80%;
     margin: 0 auto;
-    height: 10vh;
+    height: 14vh;
     align-items: center;
     display: flex;
     justify-content: space-around;
@@ -267,7 +267,7 @@ input {
 
 .active {
     background: rgb(255, 255, 255);
-    color: rgb(20, 140, 164);
+    color: rgb(20, 140, 164) !important;
     font-weight: 500;
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(89, 238, 255, 0.943) 100%, rgba(255, 255, 255, 1) 100%, rgba(255, 255, 255, 1) 100%);
     padding: 6px;
@@ -320,7 +320,7 @@ a {
 }
 
 .brand-img {
-    width: 200px;
+    width: 100px;
     transition: 0.3s;
 }
 
@@ -504,11 +504,6 @@ a {
 @media (width>1600px) {
     .former {
         max-width: 700px;
-    }
-
-
-    .brand-img {
-        width: 300px;
     }
 
     .menu-sections a {
@@ -711,7 +706,7 @@ button {
 }
 
 body {
-    background-color: rgba(233, 224, 137, 0.889);
+    background-color: rgba(0, 0, 0, 0.889);
 }
 
 .cart-fooditem {
@@ -746,16 +741,40 @@ body {
 
 
 .food {
-    background-color: rgb(249, 239, 141);
+    background-color: rgb(255, 255, 255);
 }
-.food{
+
+.food {
     border-left: 1px solid black;
     border-radius: 20px;
 }
-.categories{
+
+.categories {
     border: none;
 }
 
-hr{
+hr {
     background-color: white;
+}
+
+.categories li {
+    color: white;
+}
+
+.cart {
+    color: white;
+}
+
+footer span {
+    color: white;
+}
+
+.foot {
+    padding: 16px;
+    text-align: center;
+    background-color: #673e08;
+}
+.cart .cart-container{
+    margin-top: 20px;
+    justify-content: center;    
 }

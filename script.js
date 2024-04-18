@@ -63,6 +63,18 @@ let foodCatelog = {
             'img': "https://dukaan.b-cdn.net/200x200/webp/2179916/541a1ca8-cd5f-450b-a3e2-0e3e29ca0828/1607337983547.png",
             'price': "60"
         }
+    ],
+    'Juices': [
+        {
+            'name': "Mango Milkshake",
+            'img': "https://th.bing.com/th/id/OIP.t2CjpRCWB8E-oQ_wJCtDmAHaFj?w=203&h=152&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+            'price': "80"
+        },
+        {
+            'name': "Cold Coffee",
+            'img': "https://1.bp.blogspot.com/-x9vOBWEnChE/YOC9J7acsxI/AAAAAAAA4Po/l1GSDEpp_ZQw8UhBNfFLROkjJOjZ-aaiACLcBGAsYHQ/s1080/Untitled%2Bdesign.png",
+            'price': "40"
+        }
     ]
 
 };
@@ -353,8 +365,9 @@ itemarray.forEach((item, index) => {
 //     cartContainer.appendChild(cartItem);
 // }
 
+let cartContainer = document.getElementById('food-cart-cont');
+
 function updateCart() {
-    let cartContainer = document.getElementById('food-cart-cont');
     cartContainer.innerHTML = ''; // Clear the cart container before updating
     let totalPrice = 0; // Variable to store the total price of all items
 
@@ -393,6 +406,7 @@ function updateCart() {
     cont3.appendChild(proceed);
     cartContainer.appendChild(cont3);
 }
+updateCart();
 
 function pricer(item1) {
     for (let i = 0; i < Object.keys(foodCatelog).length; i++) {
