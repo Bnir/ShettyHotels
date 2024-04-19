@@ -1,4 +1,4 @@
-<h1>Shetty's Hotels</h1>
+<h1>Yum Yard</h1>
 
 
 <p>Added functionality of Cart and QR generation - Apr 18 2024 </p>
